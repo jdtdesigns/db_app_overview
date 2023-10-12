@@ -1,5 +1,6 @@
 const express = require('express');
 const api_routes = require('./routes/api_routes');
+const db = require('./db/connection');
 
 const app = express();
 
@@ -11,4 +12,7 @@ app.use(express.json());
 // Load Routes
 app.use('/api', api_routes);
 
-app.listen(PORT, () => console.log('Server started on port', PORT));
+db.sync({ force: false })
+  .then(() => {
+    app.listen(PORT, () => console.log('Server started on port', PORT));
+  });
