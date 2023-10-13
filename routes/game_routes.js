@@ -4,7 +4,7 @@ const Shop = require('../models/Shop');
 const Game = require('../models/Game');
 
 // Create a game - http://localhost:3333/api/games
-router.post('/games', (clientReq, serverRes) => {
+router.post('/', (clientReq, serverRes) => {
   const data = clientReq.body;
 
   if (!data.title || !data.genre || !data.release_date || !data.platform) {
@@ -26,7 +26,7 @@ router.post('/games', (clientReq, serverRes) => {
 });
 
 // Get all games
-router.get('/games', (clientReq, serverRes) => {
+router.get('/', (clientReq, serverRes) => {
   Game.findAll()
     .then(games => {
       serverRes.json(games);
@@ -34,7 +34,7 @@ router.get('/games', (clientReq, serverRes) => {
 });
 
 // Get one game by id
-router.get('/games/:game_id', (clientReq, serverRes) => {
+router.get('/:game_id', (clientReq, serverRes) => {
   const gameId = clientReq.params.game_id;
 
   Game.findByPk(gameId)
@@ -43,7 +43,7 @@ router.get('/games/:game_id', (clientReq, serverRes) => {
     });
 });
 
-// Optional game search
+// Optional game search localhost:3333/api/games/game/search
 router.get('/game/search', (clientReq, serverRes) => {
   const searchField = clientReq.query.title ? 'title' : clientReq.query.id ? 'id' : 'genre';
 
