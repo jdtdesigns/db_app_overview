@@ -1,31 +1,7 @@
 const router = require('express').Router();
+
 const Shop = require('../models/Shop');
 const Game = require('../models/Game');
-
-// Game.update({
-//   shop_id: 1
-// }, {
-//   where: {
-//     title: 'Halo 3'
-//   }
-// }).then(updatedGame => {
-//   console.log(updatedGame);
-// });
-
-
-/*** SHOP ROUTES ***/
-
-// Create shop 
-router.post('/shops', (clientReq, serverRes) => {
-  const data = clientReq.body;
-
-  Shop.create(data)
-    .then(newShop => {
-      serverRes.json(newShop);
-    });
-});
-
-/*** GAME ROUTES ***/
 
 // Create a game - http://localhost:3333/api/games
 router.post('/games', (clientReq, serverRes) => {

@@ -1,6 +1,6 @@
 const { DataTypes, Model } = require('sequelize');
 const db = require('../db/connection');
-// const Game = require('./Game');
+const Game = require('./Game');
 
 class Shop extends Model { }
 
@@ -18,7 +18,7 @@ Shop.init({
   sequelize: db
 });
 
-// Shop.hasMany(Game);
-// Game.belongsTo(Shop);
+Shop.hasMany(Game, { foreignKey: 'shop_id' });
+Game.belongsTo(Shop, { foreignKey: 'shop_id' });
 
 module.exports = Shop;
