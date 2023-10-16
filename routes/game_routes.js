@@ -1,4 +1,5 @@
 const router = require('express').Router();
+require('console.table');
 
 const Shop = require('../models/Shop');
 const Game = require('../models/Game');
@@ -27,9 +28,13 @@ router.post('/', (clientReq, serverRes) => {
 
 // Get all games
 router.get('/', (clientReq, serverRes) => {
-  Game.findAll()
+  Game.findAll({
+    attributes: ['id', 'title', 'platform', 'genre'],
+    raw: true
+  })
     .then(games => {
       serverRes.json(games);
+      console.table(games);
     });
 });
 

@@ -23,13 +23,6 @@ Game.init({
   platform: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  shop_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'shops',
-      key: 'id'
-    }
   }
 }, {
   modelName: 'game',
