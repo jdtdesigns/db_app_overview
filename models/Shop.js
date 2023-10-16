@@ -18,7 +18,7 @@ Shop.init({
   sequelize: db
 });
 
-Shop.hasMany(Game);
-Game.belongsTo(Shop);
+Shop.belongsToMany(Game, { through: 'shop_game' });
+Game.belongsToMany(Shop, { through: 'shop_game' });
 
 module.exports = Shop;
